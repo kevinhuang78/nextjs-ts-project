@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -51,6 +52,12 @@ export default function Home() {
               Instantly deploy your Next.js site to a public URL with Vercel.
             </p>
           </a>
+        </div>
+
+        <div>
+          <p><Link href='/post/abc'>Go to pages/post/[pid].tsx</Link></p>
+          <p><Link href='/post/abc?foo=bar'>Also goes to pages/post/[pid].tsx</Link></p>
+          <p><Link href='/author/randomslug'>Go to pages/author/[slug].tsx</Link></p>
         </div>
       </main>
 
