@@ -16,4 +16,13 @@ const Post = () => {
   );
 };
 
+export const getStaticProps = () => ({
+  props: {},
+});
+
+export const getStaticPaths = () => ({
+  paths: [{ params: { pid: 'abc' } }, { params: { pid: 'abcd' } }],
+  fallback: false,
+});
+
 export default Post;

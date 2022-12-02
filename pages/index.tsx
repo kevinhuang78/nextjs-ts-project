@@ -56,8 +56,9 @@ export default function Home() {
 
         <div>
           <p><Link href='/post/abc'>Go to pages/post/[pid].tsx</Link></p>
-          <p><Link href='/post/abc?foo=bar'>Also goes to pages/post/[pid].tsx</Link></p>
-          <p><Link href='/author/randomslug'>Go to pages/author/[slug].tsx</Link></p>
+          <p><Link href='/post/abcd?foo=bar'>Also goes to pages/post/[pid].tsx</Link></p>
+          <p><Link href='/author/randomslug/b'>Go to pages/author/[slug].tsx</Link></p>
+          <p><Link href='/wecasa'>Go to Wecasa</Link></p>
         </div>
       </main>
 
