@@ -1,0 +1,28 @@
+const colors: Record<string, string> = {
+  darkblue: '#103655',
+  blue: '#1b7cc0',
+  darkerblue: '#0E0E2C',
+  lightblue: '#c0d3e5',
+  lighterblue: '#edf2f8',
+  checkboxblue: '#e6edf5',
+  cream: '#f7eddb',
+  darkprimary: '#de613c',
+  black: '#000000',
+  primary: '#ea663f',
+  darkgrey: '#404041',
+  green: '#079c66',
+  lightergreen: '#27ae60',
+  yellow: '#f0cc00',
+  lightyellow: '#FCF2BC',
+  red: '#e13f48',
+  warning: '#C73C44',
+  grey: '#9b9b9b',
+  mediumlightgrey: '#f7f7f7',
+  mediumextralightgrey: '#c7c7c7',
+  mediumgrey: '#e9e9e9',
+  transparent: 'transparent',
+  pink: '#f7cddc',
+  mediumpink: '#ff82bf',
+};
+
+export default colors;
