@@ -13,8 +13,8 @@ const infiniteScroll = keyframes`
 `;
 
 const Container = styled.div`
-  color: ${colors.white};
   background-color: ${colors.primary};
+  color: ${colors.white};
 `;
 
 const Slider = styled.div`
@@ -25,7 +25,7 @@ const Slider = styled.div`
 
 const ContentContainer = styled.div`
   display: flex;
-  animation: ${infiniteScroll} 160s linear infinite;
+  animation: ${infiniteScroll} 120s linear infinite;
 `;
 
 const Content = styled.div`
@@ -39,6 +39,7 @@ const Content = styled.div`
 
 const Text = styled.p`
   white-space: nowrap;
+  padding: 0 15px;
 `;
 
 const InfiniteScroller = ({ children }: PropsWithChildren) => (
