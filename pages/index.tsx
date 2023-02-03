@@ -1,85 +1,88 @@
 import Image from "next/image";
-import Link from "next/link";
-import { ReactElement } from "react";
+import styled from "styled-components";
 import InfiniteScroller from "../components/infinite-scroller/infinite-scroller";
-import Layout from "../components/layout/layout";
 import { NextPageWithLayout } from "./_app";
+import { minWidth } from "../utils/mixins";
+import colors from "../constants/colors";
+
+const HORIZONTAL_MARGIN = 20;
+
+const ImageContainer = styled.div`
+  width: 100%;
+  height: 200px;
+  position: relative;
+
+  ${minWidth.md`height: 360px;`}
+  ${minWidth.xl`height: 430px;`}
+`;
+
+const CardsSectionTitle = styled.h1`
+  margin: 30px 20px;
+  color: ${colors.darkblue};
+  font-weight: bold;
+  font-size: 54px;
+`;
+
+const Cards = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const Card = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  background-color: ${colors.cream};
+  width: calc(100% - ${HORIZONTAL_MARGIN * 2}px);
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  margin: 10px ${HORIZONTAL_MARGIN}px;
+  color: ${colors.darkblue};
+  font-weight: 700;
+  font-size: 38px;
+  text-align: center;
+
+  ${minWidth.md`
+    width: calc(25% - ${HORIZONTAL_MARGIN * 2}px);
+  `}
+`;
+
+const Service = styled.span`
+  margin: 0 15px;
+`;
 
 const Home: NextPageWithLayout = () => (
-  <div>
+  <>
     <InfiniteScroller>
       {Array.from(Array(10).keys()).map(
         () =>
           "This is a fake website inspired by Wecasa website so I can train on Next.js "
       )}
     </InfiniteScroller>
-
-    <main>
-      <h1>
-        Welcome to <a href="https://nextjs.org">Next.js!</a>
-      </h1>
-
-      <p>
-        Get started by editing <code>pages/index.tsx</code>
-      </p>
-
-      <div>
-        <a href="https://nextjs.org/docs">
-          <h2>Documentation &rarr;</h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a href="https://nextjs.org/learn">
-          <h2>Learn &rarr;</h2>
-          <p>Learn about Next.js in an interactive course with quizzes!</p>
-        </a>
-
-        <a href="https://github.com/vercel/next.js/tree/canary/examples">
-          <h2>Examples &rarr;</h2>
-          <p>Discover and deploy boilerplate example Next.js projects.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>Deploy &rarr;</h2>
-          <p>Instantly deploy your Next.js site to a public URL with Vercel.</p>
-        </a>
-      </div>
-
-      <div>
-        <p>
-          <Link href="/post/abc">Go to pages/post/[pid].tsx</Link>
-        </p>
-        <p>
-          <Link href="/post/abcd?foo=bar">
-            Also goes to pages/post/[pid].tsx
-          </Link>
-        </p>
-        <p>
-          <Link href="/author/randomslug/b">Go to pages/author/[slug].tsx</Link>
-        </p>
-        <p>
-          <Link href="/wecasa">Go to Wecasa</Link>
-        </p>
-      </div>
-    </main>
-
-    <footer>
-      <a
-        href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Powered by{" "}
-        <span>
-          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-        </span>
-      </a>
-    </footer>
-  </div>
+    <ImageContainer>
+      <Image src="/home/home-bg.jpeg" alt="A vacuum" fill />
+    </ImageContainer>
+    <CardsSectionTitle>Les services les plus utilisés :</CardsSectionTitle>
+    <Cards>
+      {[
+        "Coloration cheveux",
+        "Coupe de cheveux enfant",
+        "Soins cheveux",
+        "Brushing cheveux",
+        "Coupe de cheveux homme",
+        "Lissage cheveux",
+        "Coupe de cheveux femme",
+        "Coupe de cheveux",
+        "Coiffure mariée",
+        "Coiffure",
+      ].map((service) => (
+        <Card key={service}>
+          <Service>{service}</Service>
+        </Card>
+      ))}
+    </Cards>
+  </>
 );
 
 export default Home;
