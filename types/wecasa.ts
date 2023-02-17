@@ -6,7 +6,7 @@ type UniverseReference =
   | "childcare"
   | "sports_coaching";
 
-type Zone = {
+export type Zone = {
   number: number;
   area_codes: string[];
 };

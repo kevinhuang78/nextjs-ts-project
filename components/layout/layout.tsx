@@ -3,35 +3,19 @@ import Head from "next/head";
 import Header from "./header";
 import Footer from "./footer";
 
-type LayoutProps = PropsWithChildren & {
-  meta?: {
-    title?: string;
-    description?: string;
-    icon?: string;
-  };
-};
+type LayoutProps = PropsWithChildren;
 
-const Layout = ({
-  meta = {
-    title: "Wecasa copy",
-    description: "A copy of Wecasa website",
-  },
-  children,
-}: LayoutProps) => {
-  const { title, description, icon = "/favicon.ico" } = meta;
-
-  return (
-    <>
-      <Head>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <link rel="icon" href={icon} />
-      </Head>
-      <Header />
-      <main>{children}</main>
-      <Footer />
-    </>
-  );
-};
+const Layout = ({ children }: LayoutProps) => (
+  <>
+    <Head>
+      <title>Wecasa copy</title>
+      <meta name="description" content="A copy of Wecasa website" />
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
+    <Header />
+    <main>{children}</main>
+    <Footer />
+  </>
+);
 
 export default Layout;

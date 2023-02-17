@@ -31,7 +31,7 @@ const HeaderUniverses = () => {
   return (
     <Universes>
       {data.map(({ reference, title }: Universe) => (
-        <StyledLink key={reference} href={`/${reference}`}>
+        <StyledLink key={reference} href={`/universe/${reference}`}>
           {title}
         </StyledLink>
       ))}
