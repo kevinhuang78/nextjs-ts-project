@@ -6,6 +6,22 @@ type UniverseReference =
   | "childcare"
   | "sports_coaching";
 
+export type Category = {
+  reference: string;
+  title: string;
+  funnel_title: string;
+  disabled: boolean;
+  subcategories: {
+    reference: string;
+    title: string;
+    disabled: boolean;
+    prestations: {
+      reference: string;
+      title: string;
+    }[];
+  }[];
+};
+
 export type Zone = {
   number: number;
   area_codes: string[];
@@ -22,4 +38,5 @@ export type Universe = {
   zones: Zone[];
   pro_first_steps_quizz_url?: string;
   weekly_recurrences?: Record<string, number | number[]>;
+  categories: Category[];
 };
