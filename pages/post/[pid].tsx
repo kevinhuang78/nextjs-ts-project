@@ -7,11 +7,9 @@ const Post = () => {
 
   return (
     <div>
-      <Link href='/'>Go to home</Link>
+      <Link href="/">Go to home</Link>
       <p>Post: {pid}</p>
-      {foo && (
-        <p>Foo: {foo}</p>
-      )}
+      {foo && <p>Foo: {foo}</p>}
     </div>
   );
 };
@@ -21,7 +19,7 @@ export const getStaticProps = () => ({
 });
 
 export const getStaticPaths = () => ({
-  paths: [{ params: { pid: 'abc' } }, { params: { pid: 'abcd' } }],
+  paths: [{ params: { pid: "abc" } }, { params: { pid: "abcd" } }],
   fallback: false,
 });
 
