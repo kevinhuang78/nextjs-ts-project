@@ -18,7 +18,7 @@ const Universe = () => {
   } = useQuery(["universes"], fetchUniverses);
 
   if (isLoading) return <div>Is loading !</div>;
-  if (error) return <div>Error !</div>;
+  if (error) return <div>{String(error)}</div>;
 
   const {
     title,

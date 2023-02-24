@@ -26,7 +26,7 @@ const HeaderUniverses = () => {
   );
 
   if (isLoading) return <div>It is loading!</div>;
-  if (error) return <div>{error}</div>;
+  if (error) return <div>{String(error)}</div>;
 
   return (
     <Universes>

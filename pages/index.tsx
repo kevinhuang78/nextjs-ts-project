@@ -61,7 +61,7 @@ const Home: NextPageWithLayout = () => (
       )}
     </InfiniteScroller>
     <ImageContainer>
-      <Image src="/home/home-bg.jpeg" alt="A vacuum" fill />
+      <Image src="/home/home-bg.jpeg" alt="A vacuum" fill priority />
     </ImageContainer>
     <CardsSectionTitle>Les services les plus utilisés :</CardsSectionTitle>
     <Cards>

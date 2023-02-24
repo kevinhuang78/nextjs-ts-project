@@ -1,6 +1,7 @@
 {
   "env": {
     "browser": true,
+    "cypress/globals": true,
     "es2021": true,
     "node": true
   },
@@ -20,7 +21,7 @@
     "sourceType": "module"
   },
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "react", "prettier"],
+  "plugins": ["@typescript-eslint", "react", "prettier", "cypress"],
   "rules": {
     "@typescript-eslint/ban-types": [
       "error",
@@ -32,6 +33,12 @@
       }
     ],
     "@typescript-eslint/no-unused-vars": ["error"],
+    "cypress/no-assigning-return-values": "error",
+    "cypress/no-unnecessary-waiting": "error",
+    "cypress/assertion-before-screenshot": "warn",
+    "cypress/no-force": "warn",
+    "cypress/no-async-tests": "error",
+    "cypress/no-pause": "error",
     "import/extensions": [
       "error",
       "ignorePackages",
