@@ -5,7 +5,7 @@ export default defineConfig({
     baseUrl: "http://localhost:3000",
   },
   env: {
-    wecasa_api_url: "https://www.wecasa.fr/api/v1",
+    wecasa_api_url: "https://****",
   },
   video: false,
 });
