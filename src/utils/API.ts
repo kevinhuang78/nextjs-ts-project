@@ -1,21 +1,22 @@
 import axios from "axios";
+import { AUTH_TOKEN } from "../constants/login";
 
 const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_WECASA_API_URL,
   timeout: 0,
-  headers: { "Content-Type": "application/json" },
+  headers: {
+    "Content-Type": "application/json",
+    accept: "application/json",
+    "accept-language": "fr",
+    "Wecasa-Country": "FR",
+  },
 });
 
-/* instance.interceptors.request.use(
-  (config) => {
-    config.params = {
-      ...config.params,
-      api_key: process.env.REACT_APP_API_KEY,
-    };
-    return config;
-  },
-  (error) => Promise.reject(error)
-); */
+axios.interceptors.request.use((config) => {
+  const token = localStorage.getItem(AUTH_TOKEN);
+  config.headers.Authorization = token || "";
+  return config;
+});
 
 instance.interceptors.response.use(
   (response) => response,
