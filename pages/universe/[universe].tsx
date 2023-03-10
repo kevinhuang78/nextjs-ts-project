@@ -1,21 +1,17 @@
-import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
+import { dehydrate, QueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import { Category, Universe as UniverseType, Zone } from "../../types/wecasa";
-
-const fetchUniverses = () =>
-  fetch(`${process.env.NEXT_PUBLIC_WECASA_API_URL}/universes.json`).then(
-    (res) => res.json()
-  );
+import {
+  Category,
+  Universe as UniverseType,
+  Zone,
+} from "../../src/types/wecasa";
+import { fetchUniverses, useGetUniverses } from "../../src/api/universes";
 
 const Universe = () => {
   const router = useRouter();
   const { universe: universeReference } = router.query;
-  const {
-    data: universes,
-    error,
-    isLoading,
-  } = useQuery(["universes"], fetchUniverses);
+  const { universes, error, isLoading } = useGetUniverses();
 
   if (isLoading) return <div>Is loading !</div>;
   if (error) return <div>{String(error)}</div>;

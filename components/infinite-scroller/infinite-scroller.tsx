@@ -1,7 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import { PropsWithChildren } from "react";
 import colors from "../../constants/colors";
-import { minWidth } from "../../utils/mixins";
+import { minWidth } from "../../src/utils/mixins";
 
 const infiniteScroll = keyframes`
   from { transform: translateX(0); }

@@ -8,4 +8,5 @@ export default defineConfig({
     wecasa_api_url: "https://****",
   },
   video: false,
+  trashAssetsBeforeRuns: true,
 });

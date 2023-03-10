@@ -2,7 +2,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import InfiniteScroller from "../components/infinite-scroller/infinite-scroller";
 import { NextPageWithLayout } from "./_app";
-import { minWidth } from "../utils/mixins";
+import { minWidth } from "../src/utils/mixins";
 import colors from "../constants/colors";
 
 const HORIZONTAL_MARGIN = 20;

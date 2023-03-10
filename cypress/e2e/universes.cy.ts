@@ -58,12 +58,12 @@ describe("Universes page", () => {
     {
       error: "server error",
       response: { statusCode: 500 },
-      expected: "SyntaxError: Unexpected end of JSON input",
+      expected: "AxiosError: Request failed with status code 500",
     },
     {
       error: "network failure",
       response: { forceNetworkError: true },
-      expected: "TypeError: Failed to fetch",
+      expected: "AxiosError: Network Error",
     },
   ].forEach(({ error, response, expected }) => {
     it(`renders error correctly when having a ${error}`, () => {
