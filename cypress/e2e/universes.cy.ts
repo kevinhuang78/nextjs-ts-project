@@ -1,6 +1,6 @@
 describe("Universes page", () => {
   beforeEach(() => {
-    cy.intercept("GET", "https://www.wecasa.fr/api/v1/universes.json", {
+    cy.intercept("GET", `${Cypress.env("wecasa_api_url")}/universes.json`, {
       fixture: "universes.json",
     }).as("getUniverses");
   });
@@ -69,7 +69,7 @@ describe("Universes page", () => {
     it(`renders error correctly when having a ${error}`, () => {
       cy.intercept(
         "GET",
-        "https://www.wecasa.fr/api/v1/universes.json",
+        `${Cypress.env("wecasa_api_url")}/universes.json`,
         response
       ).as("getUniverses");
       cy.visit("/universe/haircut");
