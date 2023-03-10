@@ -1,14 +1,18 @@
-import Login from "../../pages/login";
+import { useRouter } from "next/router";
 import { AUTH_TOKEN } from "../constants/login";
 
 const withAuth = (Component: any) => {
   const Auth = (props: any) => {
-    // Login data added to props via redux-store (or use react context for example)
-    const isLoggedIn = !!localStorage.getItem(AUTH_TOKEN);
+    const router = useRouter();
 
-    // If user is not logged in, return login component
-    if (!isLoggedIn) {
-      return <Login />;
+    if (typeof window !== "undefined") {
+      // Login data added to props via redux-store (or use react context for example)
+      const isLoggedIn = !!localStorage.getItem(AUTH_TOKEN);
+
+      // If user is not logged in, return login component
+      if (!isLoggedIn) {
+        router.push("/login");
+      }
     }
 
     // If user is logged in, return original component

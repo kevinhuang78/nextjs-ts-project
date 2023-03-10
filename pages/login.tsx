@@ -1,21 +1,33 @@
 import Head from "next/head";
 import styled from "styled-components";
-import { ChangeEvent, FormEvent, useCallback, useState } from "react";
+import {
+  ChangeEvent,
+  FormEvent,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
+import { useRouter } from "next/router";
 import Input from "../components/input/input";
 import Button from "../components/button/button";
 import { useLogUser } from "../src/api/login";
 import { isStringEmpty } from "../src/utils/strings";
+import { AUTH_TOKEN } from "../src/constants/login";
 
 const Container = styled.div`
   margin: 0 20px;
 `;
 
 const Login = () => {
+  const router = useRouter();
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
-  const onSuccess = useCallback(() => {}, []);
+
+  const onSuccess = useCallback(() => {
+    router.push("/customer-area/dashboard");
+  }, [router]);
 
   const { logUser, isLoading, error } = useLogUser({ user: form, onSuccess });
 
@@ -37,6 +49,13 @@ const Login = () => {
     },
     [logUser]
   );
+
+  useEffect(() => {
+    if (localStorage.getItem(AUTH_TOKEN)) {
+      onSuccess();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Container>

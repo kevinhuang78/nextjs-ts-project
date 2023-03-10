@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import Link from "next/link";
+import { useCallback } from "react";
 import { Universe } from "../../src/types/wecasa";
 import colors from "../../constants/colors";
 import { minWidth } from "../../src/utils/mixins";
 
 import { useGetUniverses } from "../../src/api/universes";
+import { AUTH_TOKEN } from "../../src/constants/login";
 
 const Universes = styled.nav`
   display: none;
@@ -21,6 +23,10 @@ const StyledLink = styled(Link)`
 const HeaderUniverses = () => {
   const { universes, error, isLoading } = useGetUniverses();
 
+  const disconnect = useCallback(() => {
+    localStorage.removeItem(AUTH_TOKEN);
+  }, []);
+
   if (isLoading) return <div>It is loading!</div>;
   if (error) return <div>{String(error)}</div>;
 
@@ -31,7 +37,16 @@ const HeaderUniverses = () => {
           {title}
         </StyledLink>
       ))}
-      <StyledLink href="/login">Connexion</StyledLink>
+      {localStorage.getItem(AUTH_TOKEN) ? (
+        <>
+          <StyledLink href="/customer-area/dashboard">Mon compte</StyledLink>
+          <StyledLink href="/" onClick={disconnect}>
+            Me déconnecter
+          </StyledLink>
+        </>
+      ) : (
+        <StyledLink href="/login">Connexion</StyledLink>
+      )}
     </Universes>
   );
 };

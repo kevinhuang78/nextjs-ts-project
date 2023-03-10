@@ -1,4 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+
 import API from "../utils/API";
 import { AUTH_TOKEN } from "../constants/login";
 
@@ -24,8 +26,12 @@ export const useLogUser = ({ onSuccess, user }: UseLogUserParams) => {
   const {
     mutate: logUser,
     isLoading,
-    error,
+    error: APIErrors,
   } = useMutation(() => logUserUtils({ user }), { onSuccess });
+  const error =
+    axios.isAxiosError(APIErrors) && APIErrors.response
+      ? APIErrors.response.data.error
+      : APIErrors;
 
   return { logUser, isLoading, error };
 };
