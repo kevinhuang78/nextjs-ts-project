@@ -7,6 +7,7 @@ import { minWidth } from "../../src/utils/mixins";
 
 import { useGetUniverses } from "../../src/api/universes";
 import { AUTH_TOKEN } from "../../src/constants/login";
+import { isLoggedIn } from "../../src/utils/login";
 
 const Universes = styled.nav`
   display: none;
@@ -37,7 +38,7 @@ const HeaderUniverses = () => {
           {title}
         </StyledLink>
       ))}
-      {localStorage.getItem(AUTH_TOKEN) ? (
+      {isLoggedIn() ? (
         <>
           <StyledLink href="/customer-area/dashboard">Mon compte</StyledLink>
           <StyledLink href="/" onClick={disconnect}>

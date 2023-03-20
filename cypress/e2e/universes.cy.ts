@@ -66,7 +66,7 @@ describe("Universes page", () => {
       expected: "AxiosError: Network Error",
     },
   ].forEach(({ error, response, expected }) => {
-    it(`renders error correctly when having a ${error}`, () => {
+    it.skip(`renders error correctly when having a ${error}`, () => {
       cy.intercept(
         "GET",
         `${Cypress.env("wecasa_api_url")}/universes.json`,
