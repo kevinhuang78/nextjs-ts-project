@@ -7,7 +7,29 @@ import {
 import { createGlobalStyle } from "styled-components";
 import { AppProps } from "next/app";
 import { NextPage } from "next";
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+
 import Layout from "../components/layout/layout";
+import frTranslations from "../i18n/fr.json";
+import enTranslations from "../i18n/en.json";
+
+i18n
+  .use(initReactI18next) // passes i18n down to react-i18next
+  .init({
+    resources: {
+      en: {
+        translation: enTranslations,
+      },
+      fr: {
+        translation: frTranslations,
+      },
+    },
+    fallbackLng: "fr",
+    interpolation: {
+      escapeValue: false, // react already safes from xss => https://www.i18next.com/translation-function/interpolation#unescape
+    },
+  });
 
 const GlobalStyle = createGlobalStyle`
   body {

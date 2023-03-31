@@ -1,5 +1,7 @@
 import Image from "next/image";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
+
 import InfiniteScroller from "../components/infinite-scroller/infinite-scroller";
 import { NextPageWithLayout } from "./_app";
 import { minWidth } from "../src/utils/mixins";
@@ -51,38 +53,31 @@ const Card = styled.div`
 const Service = styled.span`
   margin: 0 15px;
 `;
+const Home: NextPageWithLayout = () => {
+  const { t } = useTranslation(undefined, { keyPrefix: "screens.homepage" });
 
-const Home: NextPageWithLayout = () => (
-  <>
-    <InfiniteScroller>
-      {Array.from(Array(10).keys()).map(
-        () =>
-          "This is a fake website inspired by Wecasa website so I can train on Next.js "
-      )}
-    </InfiniteScroller>
-    <ImageContainer>
-      <Image src="/home/home-bg.jpeg" alt="A vacuum" fill priority />
-    </ImageContainer>
-    <CardsSectionTitle>Les services les plus utilisés :</CardsSectionTitle>
-    <Cards>
-      {[
-        "Coloration cheveux",
-        "Coupe de cheveux enfant",
-        "Soins cheveux",
-        "Brushing cheveux",
-        "Coupe de cheveux homme",
-        "Lissage cheveux",
-        "Coupe de cheveux femme",
-        "Coupe de cheveux",
-        "Coiffure mariée",
-        "Coiffure",
-      ].map((service) => (
-        <Card key={service}>
-          <Service>{service}</Service>
-        </Card>
-      ))}
-    </Cards>
-  </>
-);
+  return (
+    <>
+      <InfiniteScroller>
+        {Array.from(Array(10).keys()).map(() => t("scroller"))}
+      </InfiniteScroller>
+      <ImageContainer>
+        <Image src="/home/home-bg.jpeg" alt="A vacuum" fill priority />
+      </ImageContainer>
+      <CardsSectionTitle>{t("card_section.title")}</CardsSectionTitle>
+      <Cards>
+        {Array.from(Array(10).keys()).map((val) => {
+          const service = t(`card_section.service_${val + 1}`);
+
+          return (
+            <Card key={service}>
+              <Service>{service}</Service>
+            </Card>
+          );
+        })}
+      </Cards>
+    </>
+  );
+};
 
 export default Home;
