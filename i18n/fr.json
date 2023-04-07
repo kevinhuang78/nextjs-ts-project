@@ -15,6 +15,15 @@
         "title": "Les services les plus utilisés :"
       },
       "scroller": "C'est un faux site web inspiré de Wecasa pour que je puisse m'entraîner sur Next.js "
+    },
+    "universe": {
+      "sections": {
+        "departments": "Nous travaillons actuellement dans ces départements :",
+        "services": "Nous proposons ces services :"
+      },
+      "seo": {
+        "title": "Une copie du site de Wecasa - Services à partir de {{price}}€"
+      }
     }
   }
 }

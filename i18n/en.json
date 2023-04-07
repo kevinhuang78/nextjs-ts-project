@@ -15,6 +15,15 @@
         "title": "The most frequently used services :"
       },
       "scroller": "This is a fake website inspired by Wecasa website so I can train on Next.js "
+    },
+    "universe": {
+      "sections": {
+        "departments": "We are currently implemented in these departments :",
+        "services": "We propose these services :"
+      },
+      "seo": {
+        "title": "A copy of Wecasa website - Services from {{price}}€"
+      }
     }
   }
 }

@@ -1,6 +1,7 @@
 import { dehydrate, QueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import { useTranslation } from "react-i18next";
 import {
   Category,
   Universe as UniverseType,
@@ -9,6 +10,7 @@ import {
 import { fetchUniverses, useGetUniverses } from "../../src/api/universes";
 
 const Universe = () => {
+  const { t } = useTranslation(undefined, { keyPrefix: "screens.universe" });
   const router = useRouter();
   const { universe: universeReference } = router.query;
   const { universes, error, isLoading } = useGetUniverses();
@@ -31,13 +33,11 @@ const Universe = () => {
         <title>{`Wecasa copy - ${title}`}</title>
         <meta
           name="description"
-          content={`A copy of Wecasa website - Services à partir de ${
-            minimumPrice / 100
-          }€`}
+          content={t("seo.title", { price: minimumPrice / 100 }) || ""}
         />
       </Head>
       <h1>{title}</h1>
-      <p>We propose these services :</p>
+      <p>{t("sections.services")}</p>
       <ul>
         {categories.map((category: Category) =>
           category.subcategories.map((subcategory) =>
@@ -49,7 +49,7 @@ const Universe = () => {
           )
         )}
       </ul>
-      <p>We are currently implemented in these departments :</p>
+      <p>{t("sections.departments")}</p>
       <ul>
         {zones.map((zone: Zone) =>
           zone.area_codes.map((code) => <li key={code}>{code}</li>)
