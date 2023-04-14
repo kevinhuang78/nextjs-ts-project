@@ -1,0 +1,27 @@
+{
+  "homepage": {
+    "card_section": {
+      "service_1": "Hair colouring",
+      "service_2": "Children's haircut",
+      "service_3": "Hair care",
+      "service_4": "Hair blow-dry",
+      "service_5": "Men's haircut",
+      "service_6": "Hair straightening",
+      "service_7": "Haircut for women",
+      "service_8": "Haircut",
+      "service_9": "Bridal hairstyle",
+      "service_10": "Hairdressing",
+      "title": "The most frequently used services :"
+    },
+    "scroller": "This is a fake website inspired by Wecasa website so I can train on Next.js "
+  },
+  "universe": {
+    "sections": {
+      "departments": "We are currently implemented in these departments :",
+      "services": "We propose these services :"
+    },
+    "seo": {
+      "title": "A copy of Wecasa website - Services from {{price}}€"
+    }
+  }
+}

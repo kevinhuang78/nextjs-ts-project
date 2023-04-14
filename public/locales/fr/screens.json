@@ -1,0 +1,27 @@
+{
+  "homepage": {
+    "card_section": {
+      "service_1": "Coloration cheveux",
+      "service_2": "Coupe de cheveux enfant",
+      "service_3": "Soins cheveux",
+      "service_4": "Brushing cheveux",
+      "service_5": "Coupe de cheveux homme",
+      "service_6": "Lissage cheveux",
+      "service_7": "Coupe de cheveux femme",
+      "service_8": "Coupe de cheveux",
+      "service_9": "Coiffure mariée",
+      "service_10": "Coiffure",
+      "title": "Les services les plus utilisés :"
+    },
+    "scroller": "C'est un faux site web inspiré de Wecasa pour que je puisse m'entraîner sur Next.js "
+  },
+  "universe": {
+      "sections": {
+        "departments": "Nous travaillons actuellement dans ces départements :",
+        "services": "Nous proposons ces services :"
+      },
+      "seo": {
+        "title": "Une copie du site de Wecasa - Services à partir de {{price}}€"
+      }
+    }
+}

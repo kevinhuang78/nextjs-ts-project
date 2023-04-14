@@ -1,16 +1,17 @@
 import { dehydrate, QueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import {
   Category,
   Universe as UniverseType,
   Zone,
 } from "../../src/types/wecasa";
 import { fetchUniverses, useGetUniverses } from "../../src/api/universes";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const Universe = () => {
-  const { t } = useTranslation(undefined, { keyPrefix: "screens.universe" });
+  const { t } = useTranslation("screens", { keyPrefix: "universe" });
   const router = useRouter();
   const { universe: universeReference } = router.query;
   const { universes, error, isLoading } = useGetUniverses();
@@ -59,13 +60,16 @@ const Universe = () => {
   );
 };
 
-export const getStaticProps = async () => {
+export const getStaticProps = async ({ locale }) => {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(["universes"], fetchUniverses);
 
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
+      ...(await serverSideTranslations(locale ?? 'fr', [
+        'screens',
+      ])),
     },
   };
 };

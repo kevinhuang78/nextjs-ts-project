@@ -47,9 +47,9 @@ describe("Universes page", () => {
       cy.visit(`/universe/${reference}`);
 
       cy.get("h1").contains(title);
-      cy.contains("We propose these services :");
+      cy.contains("Nous proposons ces services :");
       cy.contains(randomService);
-      cy.contains("We are currently implemented in these departments :");
+      cy.contains("Nous travaillons actuellement dans ces départements :");
       cy.contains("75");
     });
   });

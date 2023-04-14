@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
+
+const { i18n } = require('./next-i18next.config');
+
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
@@ -9,20 +12,7 @@ const nextConfig = {
   publicRuntimeConfig: {
     NEXT_PUBLIC_WECASA_API_URL: process.env.NEXT_PUBLIC_WECASA_API_URL,
   },
-  i18n: {
-    locales: ["en-US", "fr-FR"],
-    defaultLocale: "fr-FR",
-    domains: [
-      {
-        domain: "localhost.com",
-        defaultLocale: "en-US",
-      },
-      {
-        domain: "localhost.fr",
-        defaultLocale: "fr-FR",
-      },
-    ],
-  },
+  i18n,
 };
 
 module.exports = nextConfig;
