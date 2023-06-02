@@ -2,11 +2,12 @@ import Image from "next/image";
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 
+import { GetStaticProps } from "next";
 import InfiniteScroller from "../components/infinite-scroller/infinite-scroller";
 import { NextPageWithLayout } from "./_app";
 import { minWidth } from "../src/utils/mixins";
 import colors from "../constants/colors";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { getTranslations } from "../src/utils/i18n";
 
 const HORIZONTAL_MARGIN = 20;
 
@@ -54,8 +55,7 @@ const Card = styled.div`
 const Service = styled.span`
   margin: 0 15px;
 `;
-const Home: NextPageWithLayout = ({ locale }) => {
-  console.log(locale);
+const Home: NextPageWithLayout = () => {
   const { t } = useTranslation("screens", { keyPrefix: "homepage" });
 
   return (
@@ -82,15 +82,11 @@ const Home: NextPageWithLayout = ({ locale }) => {
   );
 };
 
-export const getStaticProps = async ({
-  locale,
-}) => ({
+export const getStaticProps: GetStaticProps = async ({ locale }) => ({
   props: {
     locale,
-    ...(await serverSideTranslations(locale ?? 'fr', [
-      'screens',
-    ])),
+    ...(await getTranslations({ locale, namespaces: ["screens"] })),
   },
-})
+});
 
 export default Home;

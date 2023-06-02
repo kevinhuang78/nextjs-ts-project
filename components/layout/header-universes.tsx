@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Link from "next/link";
 import { useCallback } from "react";
+import { useRouter } from "next/router";
 import { Universe } from "../../src/types/wecasa";
 import colors from "../../constants/colors";
 import { minWidth } from "../../src/utils/mixins";
@@ -22,6 +23,7 @@ const StyledLink = styled(Link)`
 `;
 
 const HeaderUniverses = () => {
+  const router = useRouter();
   const { universes, error, isLoading } = useGetUniverses();
 
   const disconnect = useCallback(() => {
@@ -34,19 +36,27 @@ const HeaderUniverses = () => {
   return (
     <Universes>
       {universes.map(({ reference, title }: Universe) => (
-        <StyledLink key={reference} href={`/universe/${reference}`}>
+        <StyledLink
+          key={reference}
+          href={`/universe/${reference}`}
+          locale={router.locale}
+        >
           {title}
         </StyledLink>
       ))}
       {isLoggedIn() ? (
         <>
-          <StyledLink href="/customer-area/dashboard">Mon compte</StyledLink>
-          <StyledLink href="/" onClick={disconnect}>
+          <StyledLink href="/customer-area/dashboard" locale={router.locale}>
+            Mon compte
+          </StyledLink>
+          <StyledLink href="/" locale={router.locale} onClick={disconnect}>
             Me déconnecter
           </StyledLink>
         </>
       ) : (
-        <StyledLink href="/login">Connexion</StyledLink>
+        <StyledLink href="/login" locale={router.locale}>
+          Connexion
+        </StyledLink>
       )}
     </Universes>
   );

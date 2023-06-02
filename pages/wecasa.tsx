@@ -1,12 +1,16 @@
 import Link from "next/link";
+import { GetStaticProps } from "next";
 
 type WecasaProps = {
   universes: { reference: string; title: string }[];
+  locale: string;
 };
 
-const Wecasa = ({ universes }: WecasaProps) => (
+const Wecasa = ({ universes, locale }: WecasaProps) => (
   <div>
-    <Link href="/">Go to home</Link>
+    <Link href="/" locale={locale}>
+      Go to home
+    </Link>
     <h1>Possible universes at Wecasa are :</h1>
     <ul>
       {universes.map(({ title, reference }) => (
@@ -16,11 +20,11 @@ const Wecasa = ({ universes }: WecasaProps) => (
   </div>
 );
 
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const res = await fetch("https://www.wecasa.fr/api/v1/universes.json");
   const universes = await res.json();
 
-  return { props: { universes } };
+  return { props: { universes, locale } };
 };
 
 export default Wecasa;

@@ -2,13 +2,16 @@ import { dehydrate, QueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import { useTranslation } from "next-i18next";
+import { GetStaticProps } from "next";
 import {
   Category,
   Universe as UniverseType,
   Zone,
 } from "../../src/types/wecasa";
 import { fetchUniverses, useGetUniverses } from "../../src/api/universes";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { getTranslations } from "../../src/utils/i18n";
+import { UNIVERSES } from "../../constants/universes";
+import { LOCALES } from "../../constants/i18n";
 
 const Universe = () => {
   const { t } = useTranslation("screens", { keyPrefix: "universe" });
@@ -60,29 +63,22 @@ const Universe = () => {
   );
 };
 
-export const getStaticProps = async ({ locale }) => {
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(["universes"], fetchUniverses);
 
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
-      ...(await serverSideTranslations(locale ?? 'fr', [
-        'screens',
-      ])),
+      ...(await getTranslations({ locale, namespaces: ["screens"] })),
     },
   };
 };
 
 export const getStaticPaths = () => ({
-  paths: [
-    { params: { universe: "beauty" } },
-    { params: { universe: "childcare" } },
-    { params: { universe: "cleaning" } },
-    { params: { universe: "haircut" } },
-    { params: { universe: "massage" } },
-    { params: { universe: "sports_coaching" } },
-  ],
+  paths: UNIVERSES.flatMap((universe) =>
+    LOCALES.map((locale) => ({ locale, params: { universe } }))
+  ),
   fallback: false,
 });
 

@@ -1,8 +1,13 @@
 import Link from "next/link";
 import { ReactNode } from "react";
 import Head from "next/head";
+import { GetStaticProps } from "next";
 
-const Error404 = () => (
+type Error404Props = {
+  locale: string;
+};
+
+const Error404 = ({ locale }: Error404Props) => (
   <>
     <Head>
       <title>Wecasa copy - 404</title>
@@ -10,10 +15,17 @@ const Error404 = () => (
     </Head>
     <p>Error 404</p>
     <p>
-      Please return to <Link href="/">homepage</Link>
+      Please return to{" "}
+      <Link href="/" locale={locale}>
+        homepage
+      </Link>
     </p>
   </>
 );
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => ({
+  props: { locale },
+});
 
 Error404.getLayout = (page: ReactNode) => <div>{page}</div>;
 
