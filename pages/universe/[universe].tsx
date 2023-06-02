@@ -26,15 +26,20 @@ const FAQListText = styled.p`
   margin-left: -${LEFT_SPACE_FOR_LIST}px;
 `;
 
-type PrismicContentType = "heading1" | "paragraph" | "list-item";
+type PrismicContentType =
+  | "heading1"
+  | "paragraph"
+  | "list-item"
+  | "o-list-item";
+
 type PrismicContent = {
   type: PrismicContentType;
   text: string;
   spans: {
     start: number;
     end: number;
-    type: "hyperlink";
-    data: { link_type: "Web"; target: "_blank"; url: string };
+    type: "hyperlink" | string;
+    data: { link_type: "Web"; target?: "_blank"; url: string };
   }[];
 };
 
@@ -65,6 +70,18 @@ type UniverseProps = {
     uid: string;
     url: string | null;
   }[];
+};
+
+type FAQTextProps = Pick<PrismicContent, "text" | "spans">;
+
+const FAQText = ({ text, spans }: FAQTextProps) => {
+  if (spans.length === 0 || spans[0].type !== "hyperlink") return text;
+
+  return (
+    <a href={spans[0].data.url} target={spans[0].data.target}>
+      {text}
+    </a>
+  );
 };
 
 const Universe = ({ universesLandingPages }: UniverseProps) => {
@@ -131,16 +148,20 @@ const Universe = ({ universesLandingPages }: UniverseProps) => {
                     <h3>{question[0].text}</h3>
                     {isAnswerAList ? (
                       <FAQList>
-                        {answer.map(({ text, type }) =>
-                          type === "list-item" ? (
-                            <li key={text}>{text}</li>
+                        {answer.map(({ text, type, spans }) =>
+                          type === "list-item" || type === "o-list-item" ? (
+                            <li key={text}>{FAQText({ text, spans })}</li>
                           ) : (
-                            <FAQListText key={text}>{text}</FAQListText>
+                            <FAQListText key={text}>
+                              {FAQText({ text, spans })}
+                            </FAQListText>
                           )
                         )}
                       </FAQList>
                     ) : (
-                      answer.map(({ text }) => <p key={text}>{text}</p>)
+                      answer.map(({ text, spans }) => (
+                        <p key={text}>{FAQText({ text, spans })}</p>
+                      ))
                     )}
                   </>
                 );
