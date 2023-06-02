@@ -8,8 +8,10 @@ import { createGlobalStyle } from "styled-components";
 import { AppProps } from "next/app";
 import { NextPage } from "next";
 import { appWithTranslation } from "next-i18next";
+import { PrismicPreview } from "@prismicio/next";
 
 import Layout from "../components/layout/layout";
+import { repositoryName } from "../prismicio";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -32,12 +34,14 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
   const getLayout = Component.getLayout ?? ((page) => <Layout>{page}</Layout>);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <Hydrate state={pageProps.dehydratedState}>
-        <GlobalStyle />
-        {getLayout(<Component {...pageProps} />)}
-      </Hydrate>
-    </QueryClientProvider>
+    <PrismicPreview repositoryName={repositoryName}>
+      <QueryClientProvider client={queryClient}>
+        <Hydrate state={pageProps.dehydratedState}>
+          <GlobalStyle />
+          {getLayout(<Component {...pageProps} />)}
+        </Hydrate>
+      </QueryClientProvider>
+    </PrismicPreview>
   );
 };
 
